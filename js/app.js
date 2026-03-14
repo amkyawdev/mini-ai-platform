@@ -32,7 +32,7 @@ const App = {
             if (!currentPage.includes('login.html') && !currentPage.endsWith('/')) {
                 // Allow index.html as loader
                 if (!currentPage.endsWith('index.html')) {
-                    // window.location.href = 'auth/login.html';
+                    window.location.href = 'auth/login.html';
                 }
             }
         }
