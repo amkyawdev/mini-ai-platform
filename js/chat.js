@@ -151,16 +151,13 @@ const Chat = {
     },
     
     /**
-     * Create HTML for a message - OpenAI style
+     * Create HTML for a message - OpenAI style with timestamp
      * @param {object} message 
      * @returns {string}
      */
     createMessageHTML(message) {
         const isUser = message.role === 'user';
-        const avatarInitial = isUser ? 'U' : 'AI';
-        const content = isUser 
-            ? this.escapeHtml(message.content)
-            : MiniAI.parseMarkdown(message.content);
+        const timestamp = this.formatTimestamp(message.timestamp);
         
         const avatarSvg = isUser 
             ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
@@ -172,10 +169,22 @@ const Chat = {
                     ${avatarSvg}
                 </div>
                 <div class="message-content">
-                    <div class="message-text markdown-content">${content}</div>
+                    <div class="message-text markdown-content">${isUser ? this.escapeHtml(message.content) : MiniAI.parseMarkdown(message.content)}</div>
+                    <div class="message-timestamp">${timestamp}</div>
                 </div>
             </div>
         `;
+    },
+    
+    /**
+     * Format timestamp
+     * @param {string} timestamp 
+     * @returns {string}
+     */
+    formatTimestamp(timestamp) {
+        if (!timestamp) return '';
+        const date = new Date(timestamp);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     },
     
     /**
@@ -185,9 +194,11 @@ const Chat = {
     getEmptyState() {
         return `
             <div class="empty-state">
-                <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                </svg>
+                <div class="welcome-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                    </svg>
+                </div>
                 <h3 class="empty-state-title">How can I help you today?</h3>
                 <p class="empty-state-text">I can help you with questions, provide explanations, or just have a conversation. Try asking me something!</p>
             </div>
