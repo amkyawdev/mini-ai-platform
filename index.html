@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmkyawDev - AI Power Platform</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/panda.css">
+</head>
+<body>
+    <div class="landing">
+        <div id="canvas-container"></div>
+        <div class="landing-content">
+            <h1>AmkyawDev</h1>
+            <p>AI Power Platform - Chat with AI, search knowledge, build powerful applications</p>
+            <a href="chat.html" class="cta-btn">
+                <i class="bi bi-chat-dots"></i> Start Chatting
+            </a>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/three-index.js"></script>
+    <script>
+        // Check auth and redirect
+        const user = localStorage.getItem('amkyaw_user');
+        if (user) {
+            window.location.href = 'chat.html';
+        }
+    </script>
+</body>
+</html>

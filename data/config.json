@@ -1,0 +1,9 @@
+{
+    "knowledgeEngine": "https://github.io/amkyawdev/amk-engine",
+    "knowledgeBase": "https://github.io/amkyawdev/knowledge",
+    "apiTimeout": 30000,
+    "features": {
+        "upload": true,
+        "knowledgeSearch": true
+    }
+}
