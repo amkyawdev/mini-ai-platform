@@ -1,1 +1,4 @@
-{"knowledgeEngine":"https://api.amkyaw.dev/engine","knowledgeBase":"https://api.amkyaw.dev/knowledge"}
+{
+    "knowledgeEngine": "https://api.groq.com/openai/v1/chat/completions",
+    "knowledgeBase": "https://api.amkyaw.dev/knowledge"
+}
