@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini AI Platform - Loading...</title>
+    
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.svg">
+</head>
+<body>
+    <div class="loader-container">
+        <div class="loader-logo">
+            <img src="assets/logo.svg" alt="Mini AI Platform" onerror="this.style.display='none'">
+        </div>
+        <h1 class="title is-4" style="color: var(--text-primary); margin-bottom: 8px;">Mini AI Platform</h1>
+        <p class="loader-text">Loading...</p>
+    </div>
+    
+    <!-- Load configuration first -->
+    <script src="config/config.js"></script>
+    
+    <script>
+        // Simple loader that redirects to chat page
+        // Check if user is logged in, otherwise redirect to login
+        
+        // Quick check for auth
+        const isLoggedIn = localStorage.getItem('mini_ai_user') === 'logged';
+        
+        // Short delay for loading animation
+        setTimeout(() => {
+            if (isLoggedIn) {
+                window.location.href = 'pages/chat.html';
+            } else {
+                window.location.href = 'auth/login.html';
+            }
+        }, 1500);
+    </script>
+</body>
+</html>

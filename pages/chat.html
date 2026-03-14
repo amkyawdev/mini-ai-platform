@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Mini AI Platform</title>
+    
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    New Chat
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <p class="menu-label">Navigation</p>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="chat.html" class="is-active">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            Chat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="docs.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
+                            Docs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="create_api.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                            </svg>
+                            Create API
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="chat-history">
+                    <p class="menu-label">Recent Chats</p>
+                    <div id="chat-history-list">
+                        <!-- Chat history will be loaded here -->
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile" id="user-profile">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span class="user-name" id="user-name">User</span>
+                    <button class="logout-btn" id="logout-btn" title="Logout">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <div class="nav-left">
+                    <button class="menu-toggle" id="menu-toggle" title="Toggle menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="nav-center">
+                    <span id="ai-name">Mini AI</span>
+                </div>
+                
+                <div class="nav-right">
+                    <button class="nav-btn" id="settings-btn" title="Settings">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Messages will be loaded here -->
+                    <div class="empty-state">
+                        <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                        <h3 class="empty-state-title">How can I help you today?</h3>
+                        <p class="empty-state-text">I can help you with questions, provide explanations, or just have a conversation. Try asking me something!</p>
+                    </div>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <textarea 
+                            class="chat-input" 
+                            id="chat-input" 
+                            placeholder="Send a message..."
+                            rows="1"
+                        ></textarea>
+                        <button class="send-btn" id="send-btn" title="Send message">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-background" onclick="Settings.close()"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Settings</p>
+                <button class="delete" aria-label="close" onclick="Settings.close()"></button>
+            </header>
+            <section class="modal-card-body">
+                <div class="form-group">
+                    <label class="form-label">AI Name</label>
+                    <input type="text" class="input" id="settings-ai-name" placeholder="Mini AI">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Theme</label>
+                    <div class="select is-fullwidth">
+                        <select id="settings-theme">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" id="settings-streaming">
+                        Enable streaming responses
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" id="settings-sound">
+                        Enable sound notifications
+                    </label>
+                </div>
+                
+                <hr>
+                
+                <h4 class="title is-6">API Keys</h4>
+                <p class="text-muted mb-2">Configure your LLM provider API keys</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Groq API Key</label>
+                    <input type="password" class="input" id="settings-groq-key" placeholder="gsk_...">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">OpenRouter API Key</label>
+                    <input type="password" class="input" id="settings-openrouter-key" placeholder="sk-or-...">
+                </div>
+                
+                <hr>
+                
+                <h4 class="title is-6">Data Management</h4>
+                <button class="btn btn-danger" onclick="Settings.clearAllData()">
+                    Clear All Data
+                </button>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="btn btn-primary" onclick="Settings.save()">Save Changes</button>
+                <button class="btn btn-secondary" onclick="Settings.close()">Cancel</button>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../config/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/memory.js"></script>
+    <script src="../js/mini-ai.js"></script>
+    <script src="../js/knowledge.js"></script>
+    <script src="../js/llm.js"></script>
+    <script src="../components/settings.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/chat.js"></script>
+    
+    <script>
+        // Page-specific initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update user info
+            const user = Auth.getUser();
+            if (user) {
+                document.getElementById('user-name').textContent = user.name;
+                document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
+            }
+            
+            // Update AI name from preferences
+            const prefs = Memory.getPreferences();
+            if (prefs.aiName) {
+                document.getElementById('ai-name').textContent = prefs.aiName;
+            }
+            
+            // Logout button
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                Auth.logout();
+            });
+            
+            // Settings button
+            document.getElementById('settings-btn').addEventListener('click', () => {
+                Settings.open();
+            });
+            
+            // Menu toggle for mobile
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.querySelector('.sidebar').classList.toggle('is-open');
+            });
+        });
+    </script>
+</body>
+</html>

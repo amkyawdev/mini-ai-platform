@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create API - Mini AI Platform</title>
+    
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/create_api.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    New Chat
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <p class="menu-label">Navigation</p>
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="chat.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                            </svg>
+                            Chat
+                        </a>
+                    </li>
+                    <li>
+                        <a href="docs.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            </svg>
+                            Docs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 16v-4M12 8h.01"/>
+                            </svg>
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="create_api.html" class="is-active">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                            </svg>
+                            Create API
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile" id="user-profile">
+                    <div class="user-avatar" id="user-avatar">U</div>
+                    <span class="user-name" id="user-name">User</span>
+                    <button class="logout-btn" id="logout-btn" title="Logout">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <div class="nav-left">
+                    <button class="menu-toggle" id="menu-toggle" title="Toggle menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12h18M3 6h18M3 18h18"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="nav-center">
+                    <span>Create API Key</span>
+                </div>
+                
+                <div class="nav-right">
+                    <!-- Empty for alignment -->
+                </div>
+            </div>
+            
+            <!-- Create API Container -->
+            <div class="create-api-container">
+                <div class="create-api-card">
+                    <div class="create-api-header">
+                        <h1 class="create-api-title">Generate API Key</h1>
+                        <p class="create-api-subtitle">Create an API key for external integrations</p>
+                    </div>
+                    
+                    <form class="api-form" id="api-form">
+                        <div class="form-group">
+                            <label class="form-label">API Name</label>
+                            <input type="text" class="input" id="api-name" placeholder="My API Key" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Description (Optional)</label>
+                            <textarea class="input" id="api-description" placeholder="Describe what this API key will be used for..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="generate-btn" id="generate-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                            </svg>
+                            Generate API Key
+                        </button>
+                    </form>
+                    
+                    <!-- API Key Result -->
+                    <div class="api-key-result" id="api-key-result">
+                        <div class="result-header">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <path d="M22 4L12 14.01l-3-3"/>
+                            </svg>
+                            API Key Generated!
+                        </div>
+                        
+                        <div class="api-key-box">
+                            <div class="api-key-label">Your API Key</div>
+                            <div class="api-key-value" id="generated-api-key">AMKYAW_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+                        </div>
+                        
+                        <button class="copy-key-btn" id="copy-key-btn">Copy to Clipboard</button>
+                        
+                        <div class="api-warning">
+                            <strong>Important:</strong>
+                            Make sure to copy your API key now. You won't be able to see it again!
+                        </div>
+                        
+                        <div class="example-usage">
+                            <div class="example-title">Example Usage</div>
+                            <div class="example-code">
+                                <code>
+<span class="keyword">fetch</span>(<span class="string">'https://api.example.com/endpoint'</span>, {
+  <span class="keyword">method</span>: <span class="string">'POST'</span>,
+  <span class="keyword">headers</span>: {
+    <span class="string">'Authorization'</span>: <span class="string">'Bearer </span><span id="example-key">AMKYAW_xxx</span><span class="string">'</span>,
+    <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>
+  },
+  <span class="keyword">body</span>: JSON.stringify({
+    <span class="string">question</span>: <span class="string">'Your question here'</span>
+  })
+})
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="../config/config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/memory.js"></script>
+    <script src="../js/app.js"></script>
+    
+    <script>
+        // API Key generation
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update user info
+            const user = Auth.getUser();
+            if (user) {
+                document.getElementById('user-name').textContent = user.name;
+                document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
+            }
+            
+            // Logout button
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                Auth.logout();
+            });
+            
+            // New chat button
+            document.getElementById('new-chat-btn').addEventListener('click', () => {
+                window.location.href = 'chat.html';
+            });
+            
+            // Menu toggle
+            document.getElementById('menu-toggle').addEventListener('click', () => {
+                document.querySelector('.sidebar').classList.toggle('is-open');
+            });
+            
+            // Form submission
+            document.getElementById('api-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('api-name').value.trim();
+                const description = document.getElementById('api-description').value.trim();
+                
+                if (!name) {
+                    App.showNotification('Please enter an API name', 'error');
+                    return;
+                }
+                
+                // Generate API key
+                const apiKeyData = Auth.createApiKey(name, description);
+                
+                // Display result
+                document.getElementById('generated-api-key').textContent = apiKeyData.key;
+                document.getElementById('example-key').textContent = apiKeyData.key.substring(0, 10) + '...';
+                document.getElementById('api-key-result').classList.add('show');
+                
+                App.showNotification('API key generated successfully!', 'success');
+            });
+            
+            // Copy to clipboard
+            document.getElementById('copy-key-btn').addEventListener('click', () => {
+                const apiKey = document.getElementById('generated-api-key').textContent;
+                navigator.clipboard.writeText(apiKey).then(() => {
+                    const btn = document.getElementById('copy-key-btn');
+                    btn.textContent = 'Copied!';
+                    btn.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        btn.textContent = 'Copy to Clipboard';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
