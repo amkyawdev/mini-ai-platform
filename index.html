@@ -3,44 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini AI Platform - Loading...</title>
-    
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    
-    <!-- Custom CSS -->
+    <title>AmkyawDev - AI Power Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/style.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo.svg">
 </head>
 <body>
-    <div class="loader-container">
-        <div class="loader-logo">
-            <img src="assets/logo.svg" alt="Mini AI Platform" onerror="this.style.display='none'">
+    <section class="landing-hero">
+        <div class="landing-content">
+            <div class="landing-badge"><span class="landing-badge-dot"></span>AI Power Platform</div>
+            <h1 class="landing-title">Welcome to <span>AmkyawDev</span></h1>
+            <p class="landing-description">A modern AI platform powered by advanced knowledge engines. Chat with AI, search documents, and build powerful applications.</p>
+            <div class="landing-actions">
+                <a href="pages/login.html" class="landing-btn landing-btn-primary"><i class="bi bi-rocket-takeoff"></i> Get Started</a>
+                <a href="pages/docs.html" class="landing-btn landing-btn-secondary"><i class="bi bi-book"></i> Documentation</a>
+            </div>
         </div>
-        <h1 class="title is-4" style="color: var(--text-primary); margin-bottom: 8px;">Mini AI Platform</h1>
-        <p class="loader-text">Loading...</p>
-    </div>
-    
-    <!-- Load configuration first -->
-    <script src="config/config.js"></script>
-    
-    <script>
-        // Simple loader that redirects to chat page
-        // Check if user is logged in, otherwise redirect to login
-        
-        // Quick check for auth
-        const isLoggedIn = localStorage.getItem('mini_ai_user') === 'logged';
-        
-        // Short delay for loading animation
-        setTimeout(() => {
-            if (isLoggedIn) {
-                window.location.href = 'pages/chat.html';
-            } else {
-                window.location.href = 'auth/login.html';
-            }
-        }, 1500);
-    </script>
+    </section>
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-chat-dots"></i></div><h3 class="custom-card-title">AI Chat</h3><p class="custom-card-text">Interactive chat interface with real-time AI responses.</p></div>
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-book"></i></div><h3 class="custom-card-title">Knowledge Base</h3><p class="custom-card-text">Connect to knowledge servers and search documents.</p></div>
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-key"></i></div><h3 class="custom-card-title">API Builder</h3><p class="custom-card-text">Generate API keys for external integrations.</p></div>
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-gear"></i></div><h3 class="custom-card-title">Tools</h3><p class="custom-card-text">Various AI tools for different use cases.</p></div>
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-phone"></i></div><h3 class="custom-card-title">Responsive</h3><p class="custom-card-text">Works seamlessly on desktop and mobile.</p></div>
+            <div class="custom-card"><div class="custom-card-icon"><i class="bi bi-shield-check"></i></div><h3 class="custom-card-title">Secure</h3><p class="custom-card-text">Your data stays in your browser.</p></div>
+        </div>
+    </section>
+    <footer class="landing-footer">
+        <div class="footer-links">
+            <a href="pages/chat.html" class="footer-link">Chat</a>
+            <a href="pages/docs.html" class="footer-link">Docs</a>
+            <a href="pages/about.html" class="footer-link">About</a>
+            <a href="pages/create_api.html" class="footer-link">API</a>
+        </div>
+        <p class="footer-copyright">© 2024 AmkyawDev. AI Power Platform.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script>document.addEventListener("DOMContentLoaded",function(){if(localStorage.getItem("amkyaw_user"))window.location.href="pages/chat.html";});</script>
 </body>
 </html>

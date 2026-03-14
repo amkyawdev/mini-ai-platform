@@ -3,207 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - Mini AI Platform</title>
-    
-    <!-- Bulma CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    
-    <!-- Custom CSS -->
+    <title>Page - AmkyawDev AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/docs.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/logo.svg">
 </head>
 <body>
-    <div class="docs-page">
-        <!-- Sidebar Overlay for Mobile -->
+    <div class="app-wrapper">
         <div class="sidebar-overlay" id="sidebar-overlay"></div>
-        
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <!-- Sidebar content will be rendered by Sidebar component -->
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="docs-main">
-            <div class="docs-content">
-                <!-- Header -->
-                <div class="docs-header">
-                    <h1 class="docs-title">Documentation</h1>
-                    <p class="docs-subtitle">Learn how to use Mini AI Platform and integrate with external services</p>
+        <aside class="sidebar show" id="sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn" onclick="window.location.href='chat.html'"><i class="bi bi-plus-lg"></i> New Chat</button>
+            </div>
+            <nav class="sidebar-nav">
+                <p class="sidebar-label">Navigation</p>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-menu-item"><a href="chat.html" class="sidebar-link"><i class="bi bi-chat-dots"></i> Chat</a></li>
+                    <li class="sidebar-menu-item"><a href="docs.html" class="sidebar-link"><i class="bi bi-book"></i> Docs</a></li>
+                    <li class="sidebar-menu-item"><a href="tools.html" class="sidebar-link"><i class="bi bi-gear"></i> Tools</a></li>
+                    <li class="sidebar-menu-item"><a href="knowledge.html" class="sidebar-link"><i class="bi bi-journal-text"></i> Knowledge</a></li>
+                    <li class="sidebar-menu-item"><a href="create_api.html" class="sidebar-link"><i class="bi bi-key"></i> API Builder</a></li>
+                    <li class="sidebar-menu-item"><a href="about.html" class="sidebar-link"><i class="bi bi-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile" onclick="logout()">
+                    <div class="user-avatar">U</div>
+                    <span class="user-name">Logout</span>
                 </div>
-                
-                <!-- Platform Overview -->
-                <section class="docs-section">
-                    <h2 class="docs-section-title">Platform Overview</h2>
-                    <p>
-                        Mini AI Platform is a lightweight, fast AI chat interface built with HTML, Bulma CSS, and Vanilla JavaScript. 
-                        It connects to a Knowledge Engine to provide intelligent responses based on your questions.
-                    </p>
-                    <p>
-                        The platform features a clean, dark-themed interface similar to modern AI chat applications, with support for:
-                    </p>
-                    <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2;">
-                        <li>Real-time AI chat</li>
-                        <li>Chat history persistence</li>
-                        <li>Custom API key generation</li>
-                        <li>Responsive design</li>
-                        <li>Multiple LLM provider support</li>
-                    </ul>
-                </section>
-                
-                <!-- Architecture -->
-                <section class="docs-section">
-                    <h2 class="docs-section-title">System Architecture</h2>
-                    <p>
-                        The platform follows a modular architecture with the following components:
-                    </p>
-                    
-                    <div class="architecture-diagram">
-                        <div class="arch-flow">
-                            <div class="arch-item">
-                                <strong>Mini AI Platform</strong>
-                                <div style="font-size: 12px; color: var(--text-secondary);">User Interface</div>
-                            </div>
-                            <span class="arch-arrow">→</span>
-                            <div class="arch-item">
-                                <strong>Knowledge Engine</strong>
-                                <div style="font-size: 12px; color: var(--text-secondary);">Processing</div>
-                            </div>
-                            <span class="arch-arrow">→</span>
-                            <div class="arch-item">
-                                <strong>Knowledge Server</strong>
-                                <div style="font-size: 12px; color: var(--text-secondary);">Data Storage</div>
-                            </div>
-                            <span class="arch-arrow">→</span>
-                            <div class="arch-item">
-                                <strong>LLM</strong>
-                                <div style="font-size: 12px; color: var(--text-secondary);">AI Model</div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- API Endpoints -->
-                <section class="docs-section">
-                    <h2 class="docs-section-title">API Integration</h2>
-                    <p>
-                        The platform integrates with external knowledge services. Here's how to use the API:
-                    </p>
-                    
-                    <h3 style="font-size: 18px; margin: 20px 0 12px;">Ask a Question</h3>
-                    
-                    <div class="endpoint-item">
-                        <div style="padding: 16px; border-bottom: 1px solid var(--border-color);">
-                            <span class="endpoint-method post">POST</span>
-                            <span class="endpoint-path">/api/answer</span>
-                        </div>
-                        <div class="endpoint-description">
-                            <p><strong>Request Body:</strong></p>
-                            <div class="response-example">
-{"question": "What is artificial intelligence?"}
-                            </div>
-                            <p style="margin-top: 12px;"><strong>Response:</strong></p>
-                            <div class="response-example">
-{
-  "answer": "Artificial Intelligence refers to..."
-}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h3 style="font-size: 18px; margin: 20px 0 12px;">Authentication</h3>
-                    <p>
-                        Include your API key in the request header:
-                    </p>
-                    <div class="docs-code">
-Authorization: Bearer YOUR_API_KEY
-                    </div>
-                </section>
-                
-                <!-- Usage Instructions -->
-                <section class="docs-section">
-                    <h2 class="docs-section-title">Usage Instructions</h2>
-                    
-                    <h3 style="font-size: 16px; margin: 16px 0 12px;">1. Getting Started</h3>
-                    <p>
-                        Simply type your question in the chat input and press Enter or click the send button. 
-                        The AI will process your question and provide a response.
-                    </p>
-                    
-                    <h3 style="font-size: 16px; margin: 16px 0 12px;">2. Creating API Keys</h3>
-                    <p>
-                        Navigate to the "Create API" page to generate your own API key for external integrations.
-                    </p>
-                    
-                    <h3 style="font-size: 16px; margin: 16px 0 12px;">3. Chat History</h3>
-                    <p>
-                        Your chat history is automatically saved in localStorage. You can view and continue 
-                        previous conversations from the sidebar.
-                    </p>
-                    
-                    <h3 style="font-size: 16px; margin: 16px 0 12px;">4. Settings</h3>
-                    <p>
-                        Click the settings button in the top navigation to customize:
-                    </p>
-                    <ul style="color: var(--text-secondary); margin-left: 20px; line-height: 2;">
-                        <li>AI name</li>
-                        <li>Theme (dark/light)</li>
-                        <li>Streaming responses</li>
-                        <li>Sound notifications</li>
-                        <li>LLM API keys</li>
-                    </ul>
-                </section>
-                
-                <!-- Connected Repositories -->
-                <section class="docs-section">
-                    <h2 class="docs-section-title">Connected Repositories</h2>
-                    <p>
-                        The platform is designed to work with these external repositories:
-                    </p>
-                    
-                    <div class="repo-cards" style="margin-top: 20px;">
-                        <div class="repo-card">
-                            <div class="repo-name">Knowledge Engine</div>
-                            <div class="repo-description">
-                                Processes user questions and retrieves relevant information from the knowledge base.
-                            </div>
-                            <a href="https://github.com/amkyawdev/amkyawdev-knowledge-engin" target="_blank" class="repo-link">
-                                View Repository →
-                            </a>
-                        </div>
-                        <div class="repo-card">
-                            <div class="repo-name">Knowledge Server</div>
-                            <div class="repo-description">
-                                Stores knowledge files and provides data retrieval capabilities for the engine.
-                            </div>
-                            <a href="https://github.com/amkyawdev/amkyawdev-knowledge-server" target="_blank" class="repo-link">
-                                View Repository →
-                            </a>
-                        </div>
-                    </div>
-                </section>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-brand">
+                    <div class="brand-icon"><i class="bi bi-robot"></i></div>
+                    <span class="brand-text"><span>AmkyawDev</span> AI</span>
+                </div>
+            </header>
+            <div class="page-container">
+                <h1 class="page-title">Page Title</h1>
+                <div class="custom-card">
+                    <p class="custom-card-text">Content goes here.</p>
+                </div>
             </div>
         </main>
     </div>
-    
-    <!-- JavaScript -->
-    <script src="../config/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/auth.js"></script>
-    <script src="../js/memory.js"></script>
-    <script src="../components/sidebar.js"></script>
-    <script src="../js/app.js"></script>
-    
-    <script>
-        // Page-specific initialization
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize App
-            App.init();
-            
-            // Initialize Sidebar
-            Sidebar.init();
-        });
-    </script>
+    <script>document.addEventListener("DOMContentLoaded",function(){requireAuth();});</script>
 </body>
 </html>
