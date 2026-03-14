@@ -151,7 +151,7 @@ const Chat = {
     },
     
     /**
-     * Create HTML for a message
+     * Create HTML for a message - OpenAI style
      * @param {object} message 
      * @returns {string}
      */
@@ -162,10 +162,14 @@ const Chat = {
             ? this.escapeHtml(message.content)
             : MiniAI.parseMarkdown(message.content);
         
+        const avatarSvg = isUser 
+            ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+            : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 16v-4M12 8h.01"/></svg>';
+        
         return `
             <div class="message ${message.role}">
                 <div class="message-avatar ${message.role}">
-                    ${avatarInitial}
+                    ${avatarSvg}
                 </div>
                 <div class="message-content">
                     <div class="message-text markdown-content">${content}</div>

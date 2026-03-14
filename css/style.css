@@ -38,6 +38,31 @@ html, body {
 }
 
 /* Sidebar Styles */
+.menu-toggle-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.menu-toggle-btn:hover {
+    background-color: #2a2b32;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle-btn {
+        display: block;
+    }
+}
+
+/* Sidebar Styles */
 .sidebar {
     width: var(--sidebar-width);
     background-color: var(--bg-sidebar);
@@ -45,6 +70,61 @@ html, body {
     flex-direction: column;
     border-right: 1px solid var(--border-color);
     flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.sidebar.is-open {
+    transform: translateX(0);
+}
+
+/* Mobile overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.sidebar-overlay.is-visible {
+    display: block;
+}
+
+/* Desktop sidebar - always visible */
+@media (min-width: 769px) {
+    .sidebar {
+        transform: translateX(0);
+        position: relative;
+    }
+    
+    .sidebar-overlay {
+        display: none !important;
+    }
+    
+    .main-content {
+        flex: 1;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .main-content {
+        width: 100%;
+    }
 }
 
 .sidebar-header {
@@ -299,14 +379,28 @@ html, body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.message-avatar svg {
+    width: 20px;
+    height: 20px;
 }
 
 .message-avatar.ai {
     background-color: var(--accent-color);
 }
 
+.message-avatar.ai svg {
+    color: white;
+}
+
 .message-avatar.user {
     background-color: #5436da;
+}
+
+.message-avatar.user svg {
+    color: white;
 }
 
 .message-content {
@@ -388,19 +482,19 @@ html, body {
 
 .send-btn {
     position: absolute;
-    right: 12px;
-    bottom: 10px;
+    right: 8px;
+    bottom: 8px;
     background-color: var(--accent-color);
     border: none;
     color: white;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
 }
 
 .send-btn:hover {
@@ -410,6 +504,7 @@ html, body {
 .send-btn:disabled {
     background-color: var(--text-secondary);
     cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .send-btn svg {
